@@ -62,6 +62,17 @@ similarly simple:
 
 ----------
 
+### Maven json-lib dependency 
+
+for some reason json lib artifacts are deployed prefixed with the jdk version they're compatilble with, which makes the build fail
+
+here is a work-around to install it into your local repo:
+
+* curl -O http://repo1.maven.org/maven2/net/sf/json-lib/json-lib/2.2.3/json-lib-2.2.3-jdk15.jar
+  
+* mvn install:install-file -DgroupId=net.sf.json-lib -DartifactId=json-lib -Dversion=2.2.3 -Dpackaging=jar -Dfile=json-lib-2.2.3-jdk15.jar
+    rm json-lib-2.2.3-jdk15.jar
+
 ### License (BSD)
 
 Copyright © 2010 John Crepezzi. All Rights Reserved.
