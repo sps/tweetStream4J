@@ -74,7 +74,7 @@ public class STweet {
 
 	// get geo
 	JSONObject t = obj.optJSONObject("geo");
-	if (t != null)
+	if (t != null && !t.isNullObject())
 	    tweet.geo = STweetGeo.parseJSON(t);
 
 	return tweet;
