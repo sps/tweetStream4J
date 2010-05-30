@@ -115,7 +115,7 @@ public class STweet {
     public int hashCode() {
 	return new HashCodeBuilder(-1944286887, -1020224145)
 		.append(statusId)
-		.hashCode();
+		.toHashCode();
     }
 
     public String getCreatedAt() {
