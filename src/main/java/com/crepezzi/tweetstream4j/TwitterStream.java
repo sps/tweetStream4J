@@ -119,6 +119,14 @@ public class TwitterStream implements Runnable {
                 //up the timeout to the next appropriate value
                 timeout += STEP_TIMEOUT;
                 if (timeout > MAX_TIMEOUT) timeout = MAX_TIMEOUT;
+            } finally {
+                if (this.conn != null) {
+                    try {
+                        this.conn.getInputStream().close();
+                    } catch (IOException e) {
+                        logger.error("unable to close stream", e);
+                    }
+                }
             }
             if (this.stopRequested) break;
         }
@@ -134,6 +142,7 @@ public class TwitterStream implements Runnable {
         this.conn = null;
         this.conn = url.openConnection();
         this.conn.setDoOutput(true);
+        this.conn.setUseCaches(false);
         //set authorization
         this.conn.setRequestProperty("Authorization", authb64);
         //set up an output stream
